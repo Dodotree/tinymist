@@ -162,19 +162,19 @@ impl RenderActor {
 
     fn render(&mut self, has_full_render: bool, document: &TypstDocument) -> Vec<u8> {
         if has_full_render {
-            if let Some(data) = self.render_full() {
-                data
-            } else {
-                self.render_delta(document)
-            }
+            self.render_full(document)
         } else {
             self.render_delta(document)
         }
     }
 
     #[typst_macros::time]
-    fn render_full(&mut self) -> Option<Vec<u8>> {
-        self.renderer.pack_current()
+    fn render_full(&mut self, document: &TypstDocument) -> Vec<u8> {
+        let mut renderer = IncrSvgDocServer::default();
+        renderer.set_should_attach_debug_info(true);
+        self.renderer = renderer;
+        let data = self.renderer.pack_delta(document);
+        force_new_prefix(data)
     }
 
     #[typst_macros::time]
@@ -317,6 +317,13 @@ impl RenderActor {
         let view = self.view.read();
         view.as_ref()?.resolve_frame_loc(pos)
     }
+}
+
+fn force_new_prefix(mut data: Vec<u8>) -> Vec<u8> {
+    if let Some(comma) = data.iter().position(|b| *b == b',') {
+        data.splice(0..comma, b"new".iter().copied());
+    }
+    data
 }
 
 pub struct OutlineRenderActor {

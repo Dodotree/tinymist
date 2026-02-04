@@ -3473,7 +3473,8 @@ dependencies = [
 [[package]]
 name = "reflexo"
 version = "0.7.0-rc2"
-source = "git+https://github.com/Myriad-Dreamin/typst.ts/?rev=c078ddf869d9438b36e1cacb65100e4514780dc1#c078ddf869d9438b36e1cacb65100e4514780dc1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "be123a9e1b08d3ac02442b7419c06dbbc84df4b2c9d3a326fefe2939111e5fc7"
 dependencies = [
  "base64",
  "bitvec",
@@ -3499,7 +3500,8 @@ dependencies = [
 [[package]]
 name = "reflexo-typst"
 version = "0.7.0-rc2"
-source = "git+https://github.com/Myriad-Dreamin/typst.ts/?rev=c078ddf869d9438b36e1cacb65100e4514780dc1#c078ddf869d9438b36e1cacb65100e4514780dc1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "df726db212fd5bfd2dbcba6f0312212f69f468b17cdd1e3d5586b5c8e64d5678"
 dependencies = [
  "codespan-reporting",
  "comemo",
@@ -3531,7 +3533,8 @@ dependencies = [
 [[package]]
 name = "reflexo-typst2vec"
 version = "0.7.0-rc2"
-source = "git+https://github.com/Myriad-Dreamin/typst.ts/?rev=c078ddf869d9438b36e1cacb65100e4514780dc1#c078ddf869d9438b36e1cacb65100e4514780dc1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "77a987ba888a4d2f75ac54fc4ea3d139e1376bfc4ba5fc2d30816a7d69e39318"
 dependencies = [
  "bitvec",
  "comemo",
@@ -3559,7 +3562,8 @@ dependencies = [
 [[package]]
 name = "reflexo-vec2svg"
 version = "0.7.0-rc2"
-source = "git+https://github.com/Myriad-Dreamin/typst.ts/?rev=c078ddf869d9438b36e1cacb65100e4514780dc1#c078ddf869d9438b36e1cacb65100e4514780dc1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "184e3ee75291cc993b8274f17ace7455ab2d5004db1cda23dc3be0174c3dcb2e"
 dependencies = [
  "base64",
  "comemo",
@@ -4971,11 +4975,15 @@ dependencies = [
 name = "tinymist-render"
 version = "0.14.10"
 dependencies = [
+ "anyhow",
  "base64",
  "log",
+ "reflexo",
  "reflexo-typst",
+ "reflexo-typst2vec",
  "reflexo-vec2svg",
  "serde",
+ "serde_json",
  "tinymist-query",
  "tinymist-std",
 ]
